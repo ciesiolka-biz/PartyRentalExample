@@ -1,0 +1,384 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 10px;
+    padding: 0;
+    background-color: #1985b0;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-image {
+    height: 50px;
+    margin-right: 20px;
+}
+
+h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    margin-right: 10px;
+}
+
+nav ul li a {
+    display: inline-block;
+    background-color: #333;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+nav ul li a.active {
+    color: black;
+    background-color: #fff;
+}
+
+nav ul li a:hover {
+    background-color: blue;
+    color: white;
+}
+
+section {
+    padding: 20px;
+	margin-top: 10px;
+}
+
+.rental-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.rental-item {
+    border: 1px solid black;
+    padding: 15px;
+    width: 30%;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: #fff;
+}
+
+.rental-item h3 {
+    margin-bottom: 10px;
+}
+
+.rental-item img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.add-to-cart, #submit-rental {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+	margin-left: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-to-cart:hover, #submit-rental:hover {
+    background-color: blue;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+	margin-top: 20px; /* Optional: Space above the footer */
+    padding: 10px; /* Optional: Padding inside the footer */ 
+}
+
+#cart-table {
+    width: 95%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+#cart-table th, #cart-table td {
+    border: 1px solid #ddd;
+    padding: 5px;
+    text-align: center;
+}
+
+#cart-table th {
+    background-color: blue; /* Changed to blue */
+    color: white;
+}
+
+/* Additional styles for the input fields in the table */
+input[type="number"], input[type="text"] {
+    width: 95%; /* Make the input fields take the full width of the cell */
+    box-sizing: border-box; /* Include padding and borders in the element's total width */
+    padding: 5px; /* Add some padding for better spacing */
+    border: 1px solid #ccc; /* Optional: Add a border for clarity */
+    border-radius: 3px; /* Optional: Add rounded corners */
+}
+
+#cart-table th, #cart-table td {
+    padding: 5px; /* Space around table cells */
+	word-wrap: break-word; /* Ensures long words break onto the next line */
+    white-space: normal;   /* Allows text to wrap */
+}
+
+/* Target the Item column */
+#cart-table td:nth-child(1) { 
+    width: 250px; /* Adjust this width as needed */
+    word-wrap: break-word; /* Break long words to wrap */
+    white-space: normal; /* Allow normal wrapping */
+    overflow: visible; /* Hide any overflowing content */
+}
+
+/* Target the Quantity column */
+#cart-table td:nth-child(2) { 
+    width: 50px; /* Adjust this width as needed */
+    word-wrap: break-word; /* Break long words to wrap */
+    white-space: normal; /* Allow normal wrapping */
+}
+
+/* Target the Comment column */
+#cart-table td:nth-child(3) {
+    width: 250px; /* Adjust this width as needed */
+    word-wrap: break-word; /* Break long words to wrap */
+    white-space: normal; /* Allow normal wrapping */
+    overflow: visible; /* Hide any overflowing content */
+}
+
+/* Target the Price column */
+#cart-table td:nth-child(4) { 
+    width: 200px; /* Adjust this width as needed */
+    word-wrap: break-word; /* Break long words to wrap */
+    white-space: normal; /* Allow normal wrapping */
+}
+
+/* Target the Total column */
+#cart-table td:nth-child(5) { 
+    width: 2oopx; /* Adjust this width as needed */
+    word-wrap: break-word; /* Break long words to wrap */
+    white-space: normal; /* Allow normal wrapping */
+}
+
+/* Optional: Style for textarea */
+#cart-table textarea {
+    width: 100%; /* Make the textarea take the full width of the cell */
+    box-sizing: border-box; /* Include padding and borders in the element's total width */
+    resize: none; /* Optional: Prevent resizing */
+}
+
+.cart-summary p {
+    font-size: 1.2em;
+    margin: 5px 0;
+}
+
+.shop-button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.shop-button {
+    display: inline-block;
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.shop-button:hover {
+    background-color: blue;
+}
+
+#contact {
+    border: 5px solid blue;
+    padding: 20px;
+    margin: 20px;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="text"], input[type="email"], input[type="number"], textarea {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover, .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.rental-terms {
+    color: red;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}
+
+.cart-summary-box {
+    background-color: white; /* White background */
+    border: 1px solid black; /* 1pt black border */
+    padding: 15px; /* Padding inside the box */
+    margin: 20px 0; /* Space around the box */
+    border-radius: 5px; /* Optional: Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Subtle shadow for depth */
+}
+
+@media print {
+    body {
+        margin: 0; /* Remove body margin */
+    }
+
+    #cart-table {
+        width: calc(100% - 20px); /* Adjust width to leave space for margins */
+        margin-right: 20px; /* Set right margin */
+        border-collapse: collapse; /* Ensure no double borders */
+    }
+
+    #cart-table th, #cart-table td {
+        padding: 8px; /* Adjust padding for cells */
+        border: 1px solid #ddd; /* Border for table cells */
+    }
+
+    /* Optional: Adjust font size for print */
+    h1, h2, h3, p {
+        font-size: 12pt; /* Decrease font size for print if needed */
+    }
+
+    /* Hide elements that are not needed for print */
+    header, footer, nav {
+        display: none; /* Hide navigation and other non-essential elements */
+    }
+
+    /* Additional styles can be added to further customize the print layout */
+}
+
+.gallery-container {
+    overflow: hidden; /* Hide overflow */
+    width: 100%; /* Set the width of the gallery */
+}
+
+.gallery {
+    display: flex; /* Use flexbox to arrange images in a row */
+    animation: scroll 20s linear infinite; /* Animation */
+}
+
+.gallery img {
+    width: auto; /* Make images responsive */
+    height: 200px; /* Maintain aspect ratio */
+    flex-shrink: 0; /* Prevent images from shrinking */
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%); /* Move to the left */
+    }
+}
+
+/* Pause the animation on hover */
+.gallery-container:hover .gallery {
+    animation-play-state: paused; /* Pause the animation */
+}
+/* Centered image styles */
+.centered-image {
+    text-align: center; /* Center the content */
+    margin: 20px 0; /* Space above and below */
+}
+
+.centered-image img {
+    max-width: 100%; /* Make sure it fits the screen */
+    height: auto; /* Maintain aspect ratio */
+}

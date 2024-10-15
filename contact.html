@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+		<img src="logo.png" alt="Logo Placeholder" class="logo-image">
+		<h1>Party Rentals</h1>
+		<nav>
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="rentals.html">Rental Shopping</a></li>
+				<li><a href="contact.html" class="active">Contact Us</a></li>
+			</ul>
+		</nav>
+	</header>
+
+    <section id="contact" style="border: 2px solid blue; padding: 20px; max-width: 600px; margin-top: 20px;">
+		<h2>Contact Us</h2>
+		<form id="contact-form">
+			<div class="form-row">
+				<label for="name">Name:</label>
+				<input type="text" id="name" name="name" required>
+			</div>
+			<div class="form-row">
+				<label for="email">Email:</label>
+				<input type="email" id="email" name="email" required>
+			</div>
+			<div class="form-row">
+				<label for="message">Message:</label>
+				<textarea id="message" name="message" rows="4" required></textarea>
+			</div>
+			<div class="form-row">
+				<button type="submit">Send Message</button>
+			</div>
+		</form>
+
+		<div id="submission-summary" style="display: none; margin-top: 20px;">
+			<h3>Message Sent Successfully!</h3>
+			<p><strong>Name:</strong> <span id="summary-name"></span></p>
+			<p><strong>Email:</strong> <span id="summary-email"></span></p>
+			<p><strong>Message:</strong> <span id="summary-message"></span></p>
+		</div>
+	</section>
+
+    <footer>
+		<p>&copy; 2024 Your Company Name. All Rights Reserved.</p>
+		<p>Contact us: <a href="mailto:email@example.com">email@example.com</a></p>
+	</footer>
+	
+		<script>
+		document.getElementById('contact-form').addEventListener('submit', function(event) {
+			event.preventDefault(); // Prevent the default form submission behavior
+
+			// Get the values from the form fields
+			const name = document.getElementById('name').value;
+			const email = document.getElementById('email').value;
+			const message = document.getElementById('message').value;
+
+			// Display the submission summary
+			document.getElementById('summary-name').innerText = name;
+			document.getElementById('summary-email').innerText = email;
+			document.getElementById('summary-message').innerText = message;
+
+			// Show the summary section
+			document.getElementById('submission-summary').style.display = 'block';
+
+			// Optionally, reset the form after submission
+			document.getElementById('contact-form').reset();
+		});
+		</script>
+		
+</body>
+</html>

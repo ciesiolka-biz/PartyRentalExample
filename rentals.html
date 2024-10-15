@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rental Shopping</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+	
+	<style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* Print styling */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #cart-section, #cart-section * {
+                visibility: visible;
+            }
+            #cart-section {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 75%;
+            }
+
+            /* Reduce margins, padding, and font sizes for print */
+            h2, h3 {
+                margin: 0.1;
+                font-size: 16px;
+            }
+            table {
+                width: 80%;
+                font-size: 12px;
+                border-collapse: collapse;
+            }
+            th, td {
+                padding: 5px;
+                border: 1px solid black;
+            }
+            /* Compact the page layout */
+            #calculations {
+                margin-top: 10px;
+            }
+        }
+
+        /* Styles for the submit button and footer */
+        #submit-rental {
+            margin-bottom: 20px; /* Adds space below the button */
+            padding: 10px 15px; /* Optional: Adds some padding to the button */
+            background-color: #333; 
+            color: white; /* White text color */
+            border: none; /* No border */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="Logo Placeholder" class="logo-image">
+        <h1>Party Rentals</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="rentals.html" class="active">Rental Shopping</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section>
+        <h2>Our Rentals</h2>
+        <div class="rental-items" class="hide-for-print">
+            <div class="rental-item">
+                <h3>Folding Tables: Rectangular</h3>
+                <img src="rectangle-table.jpg" alt="Folding Tables" class="rental-image">
+                <p class="price">$30.00 each</p>
+                <p class="max-quantity" style="color: red;">Rectangular 30"Wx72"L</p>
+                <button class="add-to-cart" data-name="Folding Tables: Rectangular" data-price="30">Add to Cart</button>
+            </div>
+            <div class="rental-item">
+                <h3>Folding Tables: Round</h3>
+                <img src="round-table.jpg" alt="Folding Tables" class="rental-image">
+                <p class="price">$20.00 each</p>
+                <p class="max-quantity" style="color: red;">Round 60"</p>
+                <button class="add-to-cart" data-name="Folding Tables: Round" data-price="20">Add to Cart</button>
+            </div>
+            <div class="rental-item">
+                <h3>Chairs</h3>
+                <img src="chairs.jpg" alt="Chairs" class="rental-image">
+                <p class="price">$5.00 each</p>
+                <button class="add-to-cart" data-name="Chairs" data-price="5">Add to Cart</button>
+            </div>
+            <div class="rental-item">
+                <h3>Throne Chairs</h3>
+                <img src="LargeWhiteThrone.png" alt="Throne Chairs" class="rental-image">
+                <p class="price">$50.00 each</p>
+                <p class="max-quantity" style="color: red;">MAX. QUANTITY: 2</p>
+                <button class="add-to-cart" data-name="Throne Chairs" data-price="50">Add to Cart</button>
+            </div>
+            <div class="rental-item">
+                <h3>Backdrops</h3>
+                <img src="background.jpg" alt="Backdrops" class="rental-image">
+                <p class="price">$30.00 each</p>
+                <button class="add-to-cart" data-name="Backdrops" data-price="30">Add to Cart</button>
+            </div>
+            <div class="rental-item">
+                <h3>Premium Backdrops</h3>
+                <img src="circle-balloon-backdrop.png" alt="Backdrops" class="rental-image">
+                <p class="price">$90.00 each</p>
+                <button class="add-to-cart" data-name="Premium Backdrops" data-price="90">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+ <!-- Cart Section (This will be printed) -->
+    <div id="cart-section" class="cart-summary-box">
+        <h2>Your Cart</h2>
+        <table id="cart-table">
+			<thead>
+				<tr>
+					<th>Item</th>
+					<th>Quantity</th>
+					<th>Comment</th>
+					<th>Price</th>
+					<th>Total</th>
+				</tr>
+			</thead>
+			<tbody id="cartTableBody">
+				<!-- Cart items will be dynamically inserted here -->
+			</tbody>
+		</table>
+
+        <!-- Moved the date picker above the calculations -->
+        <label for="rental-date">Select Rental Date:</label>
+        <input type="date" id="rental-date" onchange="updateTotals()">
+
+        <div class="cart-summary">
+            <table id="calculation-table">
+                <tr>
+                    <td>Subtotal:</td>
+                    <td id="subtotal">$0.00</td>
+                </tr>
+                <tr>
+                    <td>Service Fee (15%):</td>
+                    <td id="service-fee">$0.00</td>
+                </tr>
+                <tr>
+                    <td>Sales Tax (7%):</td>
+                    <td id="sales-tax">$0.00</td>
+                </tr>
+                <tr>
+                    <td>Express Fee (if less than 14 days):</td>
+                    <td id="express-fee">$0.00</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold;">Total:</td>
+                    <td id="total" style="font-weight: bold;">$0.00</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="rental-terms">
+            <p>All rentals are for 24 hours. Rental requests are not guaranteed until payment has been received. Items and colors are subject to availability. Requests less than 14 days are subject to an Express Fee of $150.00. Cancellations within 14 days of the event are non-refundable.</p>
+        </div>
+
+        <button id="submit-rental">Submit Rental Request</button>
+    </section>
+
+
+
+    <footer>
+        <p>&copy; 2024 Your Company Name. All Rights Reserved.</p>
+        <p>Contact us: <a href="mailto:email@example.com">email@example.com</a></p>
+    </footer>
+
+<script>
+        let cart = [];
+
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const itemName = this.getAttribute('data-name');
+                const itemPrice = parseFloat(this.getAttribute('data-price'));
+                const item = { name: itemName, price: itemPrice, quantity: 1, comment: '' };
+                cart.push(item);
+                updateCartTable();
+            });
+        });
+
+        function updateCartTable() {
+            const cartTable = document.getElementById('cart-items');
+            cartTable.innerHTML = '';
+
+            cart.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${item.name}</td>
+                    <td><input type="number" value="${item.quantity}" min="1" onchange="updateQuantity('${item.name}', this.value)" /></td>
+                    <td><input type="text" placeholder="Add comment here" onchange="updateComment('${item.name}', this.value)" /></td>
+                    <td>$${item.price.toFixed(2)}</td>
+                    <td>$${(item.price * item.quantity).toFixed(2)}</td>
+                `;
+                cartTable.appendChild(row);
+            });
+
+            updateTotals();
+        }
+
+        function updateQuantity(name, newQuantity) {
+            cart = cart.map(item => {
+                if (item.name === name) {
+                    item.quantity = parseInt(newQuantity);
+                }
+                return item;
+            });
+            updateCartTable();
+        }
+
+        function updateComment(name, comment) {
+            cart = cart.map(item => {
+                if (item.name === name) {
+                    item.comment = comment;
+                }
+                return item;
+            });
+        }
+
+        function updateTotals() {
+            let subtotal = 0;
+            cart.forEach(item => {
+                subtotal += item.price * item.quantity;
+            });
+
+            const serviceFee = subtotal * 0.15;
+            const salesTax = subtotal * 0.07;
+            const expressFee = calculateExpressFee();
+
+            document.getElementById('subtotal').innerText = `$${subtotal.toFixed(2)}`;
+            document.getElementById('service-fee').innerText = `$${serviceFee.toFixed(2)}`;
+            document.getElementById('sales-tax').innerText = `$${salesTax.toFixed(2)}`;
+            document.getElementById('express-fee').innerText = `$${expressFee.toFixed(2)}`;
+            document.getElementById('total').innerText = `$${(subtotal + serviceFee + salesTax + expressFee).toFixed(2)}`;
+        }
+
+        function calculateExpressFee() {
+            const rentalDate = new Date(document.getElementById('rental-date').value);
+            const today = new Date();
+            const timeDiff = rentalDate.getTime() - today.getTime();
+            const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+            if (diffDays <= 14) {
+                return 150.00;
+            } else {
+                return 0.00;
+            }
+        }
+
+        document.getElementById('submit-rental').addEventListener('click', function (event) {
+			event.preventDefault(); // Prevent default form submission
+
+			const rentalDateInput = document.getElementById("rental-date").value;
+
+			if (!rentalDateInput) {
+				alert("Please select a rental date before printing.");
+				return; // Prevent the print dialog from opening
+			}
+
+			// If the date is selected, proceed to open the print dialog
+			window.print(); // Only the cart section will be printed
+		});
+
+    </script>
+
+</body>
+</html>
